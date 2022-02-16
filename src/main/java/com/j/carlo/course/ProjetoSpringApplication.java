@@ -14,11 +14,19 @@ public class ProjetoSpringApplication {
 		SpringApplication.run(ProjetoSpringApplication.class, args);
 	}
 	
+	Endereco endereco;
+	
 	@Bean
-    public CommandLineRunner run(EnderecoClient enderecoClient){
+    public CommandLineRunner run(EnderecoClient enderecoClient, EnderecoRepository enderecoRepository){
         return args -> {
-                Endereco endereco = enderecoClient.cep("40435405");
+                endereco = enderecoClient.cep("40435405");
                 System.out.println(endereco);
+                
+                enderecoRepository.save(endereco);
+                for (Endereco endereco1 : enderecoRepository.findAll()) {
+                	System.out.println("JPA abaixo");
+                	System.out.println(endereco1.toString());
+                }
         };
     }
 

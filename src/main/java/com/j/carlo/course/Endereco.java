@@ -1,10 +1,15 @@
 package com.j.carlo.course;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Endereco {
 
+	@Id
 	private String cep;
 	private String logradouro;
 	private String complemento;
@@ -15,11 +20,7 @@ public class Endereco {
 	private String gia;
 	private String ddd;
 	private String siafi;
-	
-	public Endereco() {
-		
-	}
-	
+
 	public String getCep() {
 		return cep;
 	}
@@ -80,6 +81,7 @@ public class Endereco {
 	public void setSiafi(String siafi) {
 		this.siafi = siafi;
 	}
+	
 	@Override
 	public String toString() {
 		return "Endereco [cep=" + cep + ", logradouro=" + logradouro + ", complemento=" + complemento + ", bairro="
