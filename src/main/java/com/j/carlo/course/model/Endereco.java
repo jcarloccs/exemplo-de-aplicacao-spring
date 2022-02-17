@@ -1,4 +1,4 @@
-package com.j.carlo.course;
+package com.j.carlo.course.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

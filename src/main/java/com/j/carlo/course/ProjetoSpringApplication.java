@@ -6,6 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
+import com.j.carlo.course.model.Endereco;
+import com.j.carlo.course.model.EnderecoRepository;
+import com.j.carlo.course.service.EnderecoClient;
+
 @SpringBootApplication
 @EnableFeignClients
 public class ProjetoSpringApplication {
@@ -17,14 +21,14 @@ public class ProjetoSpringApplication {
 	Endereco endereco;
 	
 	@Bean
-    public CommandLineRunner run(EnderecoClient enderecoClient, EnderecoRepository enderecoRepository){
+    public CommandLineRunner rodar(EnderecoClient enderecoClient, EnderecoRepository enderecoRepository) {
         return args -> {
                 endereco = enderecoClient.cep("40435405");
-                System.out.println(endereco);
-                
                 enderecoRepository.save(endereco);
+                endereco = enderecoClient.cep("40436220");
+                enderecoRepository.save(endereco);
+                
                 for (Endereco endereco1 : enderecoRepository.findAll()) {
-                	System.out.println("JPA abaixo");
                 	System.out.println(endereco1.toString());
                 }
         };

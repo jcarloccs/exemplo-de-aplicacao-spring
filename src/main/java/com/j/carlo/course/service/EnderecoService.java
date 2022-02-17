@@ -1,4 +1,6 @@
-package com.j.carlo.course;
+package com.j.carlo.course.service;
+
+import com.j.carlo.course.model.Endereco;
 
 public interface EnderecoService {
 	
@@ -6,7 +8,7 @@ public interface EnderecoService {
 
 	Endereco buscarPorCep(String cep);
 
-	void inserir(String cep);
+	Endereco inserir(String cep);
 
 	void deletar(String cep);
 

@@ -1,4 +1,4 @@
-package com.j.carlo.course;
+package com.j.carlo.course.model;
 
 import org.springframework.data.repository.CrudRepository;
 

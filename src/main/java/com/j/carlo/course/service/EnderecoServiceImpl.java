@@ -1,9 +1,12 @@
-package com.j.carlo.course;
+package com.j.carlo.course.service;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.j.carlo.course.model.Endereco;
+import com.j.carlo.course.model.EnderecoRepository;
 
 @Service
 public class EnderecoServiceImpl implements EnderecoService {
@@ -26,9 +29,10 @@ public class EnderecoServiceImpl implements EnderecoService {
 	}
 
 	@Override
-	public void inserir(String cep) {
+	public Endereco inserir(String cep) {
 		Endereco endereco = enderecoClient.cep(cep);
 		enderecoRepository.save(endereco);
+		return endereco;
 	}
 
 	@Override
