@@ -4,12 +4,12 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.j.carlo.course.model.Endereco;
+import com.j.carlo.course.model.ViaCep;
 
 @FeignClient(url = "https://viacep.com.br/ws/", name = "viacep")
-public interface EnderecoClient {
+public interface ViaCepService {
 	
 	@GetMapping("{cep}/json/")
-    Endereco cep(@PathVariable("cep") String cep);
+    ViaCep cep(@PathVariable("cep") String cep);
 
 }

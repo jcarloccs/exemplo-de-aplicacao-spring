@@ -6,9 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
+import com.j.carlo.course.model.Cliente;
+import com.j.carlo.course.model.ClienteRepository;
 import com.j.carlo.course.model.Endereco;
 import com.j.carlo.course.model.EnderecoRepository;
-import com.j.carlo.course.service.EnderecoClient;
+import com.j.carlo.course.model.ViaCep;
+import com.j.carlo.course.service.ViaCepService;
 
 @SpringBootApplication
 @EnableFeignClients
@@ -18,19 +21,16 @@ public class ProjetoSpringApplication {
 		SpringApplication.run(ProjetoSpringApplication.class, args);
 	}
 	
-	Endereco endereco;
-	
 	@Bean
-    public CommandLineRunner rodar(EnderecoClient enderecoClient, EnderecoRepository enderecoRepository) {
+    public CommandLineRunner run(ClienteRepository clienteRepository, EnderecoRepository enderecoRepository, ViaCepService viaCepService) {
         return args -> {
-                endereco = enderecoClient.cep("40435405");
-                enderecoRepository.save(endereco);
-                endereco = enderecoClient.cep("40436220");
-                enderecoRepository.save(endereco);
-                
-                for (Endereco endereco1 : enderecoRepository.findAll()) {
-                	System.out.println(endereco1.toString());
-                }
+        	ViaCep viaCep = viaCepService.cep("40435405");
+        	Endereco endereco = new Endereco(viaCep.getCep(), viaCep.getBairro(), viaCep.getComplemento(), viaCep.getUf(), viaCep.getLocalidade());
+        	enderecoRepository.save(endereco);
+        	Cliente cliente = new Cliente("Jean", 35, endereco);
+        	clienteRepository.save(cliente);
+        	
+        	System.out.println(cliente);
         };
     }
 

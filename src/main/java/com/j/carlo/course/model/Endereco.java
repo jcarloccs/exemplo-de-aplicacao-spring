@@ -2,91 +2,74 @@ package com.j.carlo.course.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.Table;
 
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
+@Table(name = "tb_endereco")
 public class Endereco {
-
+	
 	@Id
 	private String cep;
-	private String logradouro;
-	private String complemento;
 	private String bairro;
-	private String localidade;
-	private String uf;
-	private String ibge;
-	private String gia;
-	private String ddd;
-	private String siafi;
+	private String complemento;
+	private String estado;
+	private String cidade;
+	
+	public Endereco() {
+	}
+
+	public Endereco(String cep, String bairro, String complemento, String estado, String cidade) {
+		this.cep = cep;
+		this.bairro = bairro;
+		this.complemento = complemento;
+		this.estado = estado;
+		this.cidade = cidade;
+	}
 
 	public String getCep() {
 		return cep;
 	}
+
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	public String getLogradouro() {
-		return logradouro;
-	}
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-	public String getComplemento() {
-		return complemento;
-	}
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
+
 	public String getBairro() {
 		return bairro;
 	}
+
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
-	public String getLocalidade() {
-		return localidade;
+
+	public String getComplemento() {
+		return complemento;
 	}
-	public void setLocalidade(String localidade) {
-		this.localidade = localidade;
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
-	public String getUf() {
-		return uf;
+
+	public String getEstado() {
+		return estado;
 	}
-	public void setUf(String uf) {
-		this.uf = uf;
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
-	public String getIbge() {
-		return ibge;
+
+	public String getCidade() {
+		return cidade;
 	}
-	public void setIbge(String ibge) {
-		this.ibge = ibge;
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
-	public String getGia() {
-		return gia;
-	}
-	public void setGia(String gia) {
-		this.gia = gia;
-	}
-	public String getDdd() {
-		return ddd;
-	}
-	public void setDdd(String ddd) {
-		this.ddd = ddd;
-	}
-	public String getSiafi() {
-		return siafi;
-	}
-	public void setSiafi(String siafi) {
-		this.siafi = siafi;
-	}
-	
+
 	@Override
 	public String toString() {
-		return "Endereco [cep=" + cep + ", logradouro=" + logradouro + ", complemento=" + complemento + ", bairro="
-				+ bairro + ", localidade=" + localidade + ", uf=" + uf + ", ibge=" + ibge + ", gia=" + gia + ", ddd="
-				+ ddd + ", siafi=" + siafi + "]";
+		return "Endereco [cep=" + cep + ", bairro=" + bairro + ", complemento=" + complemento + ", estado=" + estado
+				+ ", cidade=" + cidade + "]";
 	}
-	
+
 }
