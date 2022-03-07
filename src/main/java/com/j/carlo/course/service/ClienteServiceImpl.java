@@ -38,7 +38,7 @@ public class ClienteServiceImpl implements ClienteService {
 	public Cliente inserir(Cliente cliente) {
 		String cep = cliente.getEndereco().getCep();
 		ViaCep viaCep = viaCepService.cep(cep);
-		Endereco endereco = new Endereco(viaCep.getCep(), viaCep.getBairro(), viaCep.getComplemento(), viaCep.getUf(), viaCep.getLocalidade());
+		Endereco endereco = new Endereco(viaCep.getLogradouro(), cliente.getEndereco().getNumCasa(), viaCep.getCep(), viaCep.getBairro(), viaCep.getComplemento(), viaCep.getUf(), viaCep.getLocalidade());
 		enderecoRepository.save(endereco);
 		cliente.setEndereco(endereco);
 		clienteRepository.save(cliente);

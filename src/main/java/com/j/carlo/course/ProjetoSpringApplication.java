@@ -25,7 +25,7 @@ public class ProjetoSpringApplication {
     public CommandLineRunner run(ClienteRepository clienteRepository, EnderecoRepository enderecoRepository, ViaCepService viaCepService) {
         return args -> {
         	ViaCep viaCep = viaCepService.cep("40435405");
-        	Endereco endereco = new Endereco(viaCep.getCep(), viaCep.getBairro(), viaCep.getComplemento(), viaCep.getUf(), viaCep.getLocalidade());
+        	Endereco endereco = new Endereco(viaCep.getLogradouro(), "1", viaCep.getCep(), viaCep.getBairro(), viaCep.getComplemento(), viaCep.getUf(), viaCep.getLocalidade());
         	enderecoRepository.save(endereco);
         	Cliente cliente = new Cliente("Jean", 35, endereco);
         	clienteRepository.save(cliente);
